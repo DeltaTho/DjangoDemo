@@ -1,0 +1,31 @@
+body{
+  background: linear-gradient( rgba(0, 0, 0, 0.8),
+  rgba(0, 0, 0, 0.8) ), url('images/background.jpeg');
+  background-repeat: repeat;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+p{
+  color: white;
+  font-size: calc( 12px + (24 - 12) * (100vw - 100px) / (1920 - 100));
+}
+
+img{
+  padding: 1vw;
+}
+
+h1{
+  Color:white;
+  font-size: calc(1.4*( 12px + (24 - 12) * (100vw - 100px) / (1920 - 100)));
+}
+
+h2{
+  font-size: calc(1.25*( 12px + (24 - 12) * (100vw - 100px) / (1920 - 100)));
+}
+
+h3{
+  font-size: calc(1.12*( 12px + (24 - 12) * (100vw - 100px) / (1920 - 100)));
+}
+
+  

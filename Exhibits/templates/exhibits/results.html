@@ -1,0 +1,49 @@
+{% extends 'exhibits/base.html' %}
+{% block title %} Museum Index {% endblock %}
+{% block body %}
+
+<div class="container-fluid">
+        {% if results %}
+            <ul>
+                {% for exhibit in results %}
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12" style="background-color: #233343">
+                            <h3><a href="{% url 'exhibits:detail' exhibit.id %}">{{ exhibit.exhibit_title }}</a></h3>
+                            <p>{{ exhibit.exhibit_description }}</p>
+                        </div>     
+                        <div class="col-md-6 col-xs-12"style="background-color: #233343">
+                            <img src="{{ exhibit.exhibit_picture.url }}" class="img-responsive"></img>
+                        </div>                     
+                    </div>
+                    <br/>
+                {% endfor %}
+            </ul>
+
+            {% if results.has_other_pages %}
+                <ul class="pagination">
+                    {% if results.has_previous %}
+                        <li><a href="?page={{ results.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                        {% if results.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if results.has_next %}
+                        <li><a href="?page={{ results.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+	            </ul>
+	        {% endif %}
+
+        {% else %}
+                <p>Your search of {{q}} returned no results</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

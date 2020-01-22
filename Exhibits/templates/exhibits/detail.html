@@ -1,0 +1,24 @@
+{% extends 'exhibits/base.html' %}
+{% block title %} Item Details {% endblock %}
+{% block body %}
+
+    <h1>
+        {{ exhibit.exhibit_title }}
+    </h1>
+
+    <div class="row">
+        <div class="col-md-6 col-xs-12" style="background-color: #233343">
+            <img src="{{ exhibit.exhibit_picture.url }}" class="img-responsive"></img>          
+        </div>
+        <div class="col-md-6 col-xs-12" style="background-color: #233343">
+            <p>{{ exhibit.exhibit_description }}</p>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
+
+
+

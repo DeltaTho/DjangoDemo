@@ -1,0 +1,55 @@
+{% extends 'exhibits/base.html' %}
+{% block title %} Museum Index {% endblock %}
+{% block body %}
+
+    <!--Landing-wrapper includes our background, most page elements are within it-->
+
+    <div class="container-fluid">
+        {% if exhibit_list %}
+            <ul>
+                {% for exhibit in exhibit_list %}
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12" style="background-color: #233343">
+                            <h3><a href="{% url 'exhibits:detail' exhibit.id %}">{{ exhibit.exhibit_title }}</a></h3>
+                            <p>{{ exhibit.exhibit_description }}</p>
+                        </div>     
+                        <div class="col-md-6 col-xs-12"style="background-color: #233343">
+                            <img src="{{ exhibit.exhibit_picture.url }}" class="img-responsive"></img>
+                        </div>                     
+                    </div>
+                    <br/>
+                {% endfor %}
+            </ul>
+
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+	            </ul>
+	        {% endif %}
+
+        {% else %}
+                <p>No Exhibits are active right now</p>
+        {% endif %}
+    </div>
+
+
+
+
+{% endblock %}
+
